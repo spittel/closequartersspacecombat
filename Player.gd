@@ -68,13 +68,16 @@ func get_input(delta):
 
 	handle_saggital_thrust(delta)
 	
-	
-func handle_thrust(delta):
-	is_drift = Input.is_action_pressed("drift")
+var drift_thrust_count = 0
 
+func handle_thrust(delta):
+	handle_drift(delta)
+	
 	if !Input.is_action_pressed("throttle_up") &&  !Input.is_action_pressed("throttle_down"):
 		get_to_center()
-		$MainThrusterSound.stop()
+		
+		if(drift_thrust_count<=0):
+			$MainThrusterSound.stop()
 		return
 		
 	if Input.is_action_pressed("throttle_up"):
@@ -86,10 +89,7 @@ func handle_thrust(delta):
 		if(forward_speed < max_speed):
 			$Camera_Spatial.translate(Vector3(0, 0, forward_speed * FX_THRUST))
 			
-		# sound fx
-		if !$MainThrusterSound.is_playing():
-			$MainThrusterSound.stream = thrusters
-			$MainThrusterSound.play()
+		thrust_sound()
 		
 	if Input.is_action_pressed("throttle_down"):
 		forward_speed = lerp(forward_speed,
@@ -102,8 +102,23 @@ func handle_thrust(delta):
 		decel_to_center(FX_GET_TO_CENTER)
 		forward_speed = max_speed
 
-
 	$Camera_Spatial/Camera/particles.get_process_material().gravity = (Vector3(0, 0, forward_speed * FX_PARTICLES))
+
+func handle_drift(delta):
+	is_drift = Input.is_action_pressed("drift")
+
+	drift_thrust_count-=delta
+	
+	if Input.is_action_just_released("drift"):
+		thrust_sound()
+		drift_thrust_count = 0.5
+
+	
+	
+func thrust_sound():
+	if !$MainThrusterSound.is_playing():
+		$MainThrusterSound.stream = thrusters
+		$MainThrusterSound.play()
 	
 func get_to_center():
 	if($Camera_Spatial.translation.z > cam_origin.z):
