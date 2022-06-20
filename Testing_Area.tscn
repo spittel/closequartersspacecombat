@@ -62,15 +62,22 @@ flags_unshaded = true
 background_mode = 1
 background_color = Color( 0.027451, 0.00784314, 0.184314, 1 )
 ambient_light_color = Color( 1, 0.934814, 0.90625, 1 )
+ambient_light_energy = 0.39
 ambient_light_sky_contribution = 0.6
-fog_depth_begin = 26.0
+fog_sun_color = Color( 0.992157, 0.992157, 0.992157, 1 )
+fog_depth_begin = 381.9
+fog_depth_end = 0.0
 fog_depth_curve = 7.72749
-fog_transmit_curve = 4.2871
 fog_height_enabled = true
-fog_height_min = 0.0
-fog_height_max = 100.0
+fog_height_max = 2745.8
+fog_height_curve = 6.72717
 tonemap_mode = 3
 tonemap_exposure = 1.21
+auto_exposure_scale = 0.13
+auto_exposure_min_luma = 0.0
+auto_exposure_max_luma = 1.95
+auto_exposure_speed = 28.43
+ss_reflections_enabled = true
 ssao_enabled = true
 ssao_light_affect = 1.0
 dof_blur_far_distance = 463.16
@@ -80,6 +87,7 @@ glow_enabled = true
 glow_levels/1 = true
 glow_levels/2 = true
 glow_levels/5 = false
+glow_intensity = 1.99
 glow_bloom = 0.08
 glow_blend_mode = 0
 glow_bicubic_upscale = true
@@ -157,39 +165,17 @@ material/0 = SubResource( 24 )
 [node name="CollisionShape" type="CollisionShape" parent="Box/Front Wall/StaticBody"]
 shape = SubResource( 3 )
 
-[node name="Light behind" type="OmniLight" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -41.1861, 105.42 )
-light_color = Color( 0.270588, 0.917647, 0.94902, 1 )
-shadow_enabled = true
-shadow_bias = 0.4
-omni_range = 133.212
-
-[node name="MeshInstance" type="MeshInstance" parent="Box/Light behind"]
-cast_shadow = 0
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
-
 [node name="Light Above" type="OmniLight" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -85.5745, 70.1052, -82.1053 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.18, 71.1852, -82.1053 )
+light_energy = 3.007
+light_indirect_energy = 4.136
 shadow_enabled = true
 shadow_color = Color( 0.972549, 0.972549, 0.972549, 1 )
 shadow_bias = 0.4
-omni_range = 189.333
+omni_range = 308.197
 omni_attenuation = 0.757859
 
 [node name="MeshInstance" type="MeshInstance" parent="Box/Light Above"]
-cast_shadow = 0
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
-
-[node name="OmniLight2" type="OmniLight" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 167.68, -41.929, -56.6034 )
-shadow_enabled = true
-shadow_bias = 0.4
-omni_range = 60.0
-
-[node name="MeshInstance" type="MeshInstance" parent="Box/OmniLight2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 187.339, 0 )
 cast_shadow = 0
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
