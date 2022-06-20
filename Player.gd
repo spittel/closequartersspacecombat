@@ -25,6 +25,7 @@ const SAGGITAL_MULTIPLIER = 50
 const FX_THRUST = .00005
 const FX_RETRO_THRUST = .0005
 const FX_GET_TO_CENTER = .001
+const FX_PARTICLES = 200
 
 var MOUSE_SENSITIVITY = 0.05
 var camera
@@ -75,7 +76,7 @@ func handle_thrust(delta):
 		get_to_center()
 		$MainThrusterSound.stop()
 		return
-
+		
 	if Input.is_action_pressed("throttle_up"):
 		forward_speed = lerp(forward_speed,
 			Input.get_action_strength("throttle_up") * 100,
@@ -100,6 +101,9 @@ func handle_thrust(delta):
 	if(forward_speed > max_speed):
 		decel_to_center(FX_GET_TO_CENTER)
 		forward_speed = max_speed
+
+
+	$Camera_Spatial/Camera/particles.get_process_material().gravity = (Vector3(0, 0, forward_speed * FX_PARTICLES))
 	
 func get_to_center():
 	if($Camera_Spatial.translation.z > cam_origin.z):
