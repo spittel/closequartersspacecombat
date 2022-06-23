@@ -2,12 +2,12 @@ extends KinematicBody
 ##################################
 # new control code
 ##################################
-export var max_speed = 70
-export var acceleration = 0.8
-export var pitch_speed = 1.5
-export var roll_speed = 1.9
+export var MAX_SPEED = 70
+export var ACCELERATION = 0.8
+export var PITCH_SPEED = 1.5
+export var ROLL_SPEED = 1.9
 export var yaw_speed = 1.25  # Set lower for linked roll/yaw
-export var input_response = 8.0
+export var INPUT_RESPONSE = 8.0
 
 var velocity = Vector3.ZERO
 
@@ -56,15 +56,15 @@ func get_input(delta):
 			
 	pitch_input = lerp(pitch_input,
 			Input.get_action_strength("pitch_up") - Input.get_action_strength("pitch_down"),
-			input_response * delta)
+			INPUT_RESPONSE * delta)
 			
 	roll_input = lerp(roll_input,
 			Input.get_action_strength("roll_left") - Input.get_action_strength("roll_right"),
-			input_response * delta)
+			INPUT_RESPONSE * delta)
 			
 	yaw_input = lerp(yaw_input,
 			Input.get_action_strength("yaw_left") - Input.get_action_strength("yaw_right"),
-			input_response * delta)
+			INPUT_RESPONSE * delta)
 
 	handle_saggital_thrust(delta)
 	
@@ -76,17 +76,18 @@ func handle_thrust(delta):
 	if !Input.is_action_pressed("throttle_up") &&  !Input.is_action_pressed("throttle_down"):
 		get_to_center()
 		
-		if(drift_thrust_count<=0):
+		if(drift_thrust_count <= 0):
 			$MainThrusterSound.stop()
+			
 		return
 		
 	if Input.is_action_pressed("throttle_up"):
 		forward_speed = lerp(forward_speed,
 			Input.get_action_strength("throttle_up") * 100,
-			acceleration * delta)
+			ACCELERATION * delta)
 		
 		# visual fx
-		if(forward_speed < max_speed):
+		if(forward_speed < MAX_SPEED):
 			$Camera_Spatial.translate(Vector3(0, 0, forward_speed * FX_THRUST))
 			
 		thrust_sound()
@@ -94,32 +95,35 @@ func handle_thrust(delta):
 	if Input.is_action_pressed("throttle_down"):
 		forward_speed = lerp(forward_speed,
 			-Input.get_action_strength("throttle_down")*50,
-			acceleration * delta)
+			ACCELERATION * delta)
 		#simulate reverse
 		$Camera_Spatial.translate(Vector3(0,0,-FX_RETRO_THRUST))
 			
-	if(forward_speed > max_speed):
-		decel_to_center(FX_GET_TO_CENTER)
-		forward_speed = max_speed
-
+	forward_speed = cap_max_speed(forward_speed)
+	
 	$Camera_Spatial/Camera/particles.get_process_material().gravity = (Vector3(0, 0, forward_speed * FX_PARTICLES))
+
+func cap_max_speed(forward_speed):
+	if(forward_speed > MAX_SPEED):
+		decel_to_center(FX_GET_TO_CENTER)
+		forward_speed = MAX_SPEED
+	
+	return forward_speed
 
 func handle_drift(delta):
 	is_drift = Input.is_action_pressed("drift")
 
-	drift_thrust_count-=delta
+	drift_thrust_count -= delta
 	
 	if Input.is_action_just_released("drift"):
 		thrust_sound()
 		drift_thrust_count = 0.5
 
-	
-	
 func thrust_sound():
 	if !$MainThrusterSound.is_playing():
 		$MainThrusterSound.stream = thrusters
 		$MainThrusterSound.play()
-	
+
 func get_to_center():
 	if($Camera_Spatial.translation.z > cam_origin.z):
 		decel_to_center(FX_GET_TO_CENTER)
@@ -141,14 +145,13 @@ func accel_to_center(accel):
 			$Camera_Spatial.translation = cam_origin
 		else:
 			$Camera_Spatial.translation = $Camera_Spatial.translation + Vector3(0,0, accel)
-	
 
 func handle_saggital_thrust(delta):
 	var horiz_input = Input.get_action_strength("horiz_right") * SAGGITAL_MULTIPLIER  - Input.get_action_strength("horiz_left") * SAGGITAL_MULTIPLIER
-	horiz_speed = lerp(horiz_speed, horiz_input, input_response * delta)
+	horiz_speed = lerp(horiz_speed, horiz_input, INPUT_RESPONSE * delta)
 
 	var vert_input = Input.get_action_strength("vert_up") * SAGGITAL_MULTIPLIER - Input.get_action_strength("vert_down") * SAGGITAL_MULTIPLIER
-	vert_speed = lerp(vert_speed, vert_input, input_response * delta)
+	vert_speed = lerp(vert_speed, vert_input, INPUT_RESPONSE * delta)
 
 	if(horiz_input != 0 || vert_input !=0):
 		if !$SaggitalThrusterSound.is_playing():
@@ -159,20 +162,23 @@ func handle_saggital_thrust(delta):
 			$SaggitalThrusterSound.stop()
 
 
+
 func _physics_process(delta):
 	get_input(delta)
 	
 	var previous_velocity = velocity
 	
-	transform.basis = transform.basis.rotated(transform.basis.z, roll_input * roll_speed * delta)
-	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
+	transform.basis = transform.basis.rotated(transform.basis.z, roll_input * ROLL_SPEED * delta)
+	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * PITCH_SPEED * delta)
 	transform.basis = transform.basis.rotated(transform.basis.y, yaw_input * yaw_speed * delta)
 	
 	transform.basis = transform.basis.orthonormalized()
+	
+	var tb = transform.basis
 
 	if !is_drift:
 		velocity = transform.basis.z * -forward_speed + transform.basis.y * vert_speed + transform.basis.x * horiz_speed
-#		velocity -=previous_velocity
+		
 	
 	$HUD/Panel/Gun_label.text= "Velocity:" + str(int(forward_speed))
 	
