@@ -162,6 +162,8 @@ func handle_saggital_thrust(delta):
 func _physics_process(delta):
 	get_input(delta)
 	
+	var previous_velocity = velocity
+	
 	transform.basis = transform.basis.rotated(transform.basis.z, roll_input * roll_speed * delta)
 	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * pitch_speed * delta)
 	transform.basis = transform.basis.rotated(transform.basis.y, yaw_input * yaw_speed * delta)
@@ -170,6 +172,7 @@ func _physics_process(delta):
 
 	if !is_drift:
 		velocity = transform.basis.z * -forward_speed + transform.basis.y * vert_speed + transform.basis.x * horiz_speed
+#		velocity -=previous_velocity
 	
 	$HUD/Panel/Gun_label.text= "Velocity:" + str(int(forward_speed))
 	

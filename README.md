@@ -1,22 +1,16 @@
+JUICINESS
+
+- TODO: drift a little on turns
+
 - TODO: make environment nice
-    -  make walls and ground invisible
-    -  put in a dark world environent
 	- TODO: get a spacey skybox?
 	- TODO: volumetric nebula in Blender
 		https://www.youtube.com/watch?v=kYv3ZIlb_sU
 
 - TODO: reverse thruster sound https://freesound.org/browse/tags/thruster/?page=2#sound
 
-
-
-
-
-
-# godot_fps_tutorial
-following https://docs.godotengine.org/en/3.2/tutorials/3d/fps_tutorial/part_one.html
-
-With edits and changes to make a newtonion physics based space shooter like asteroids.
-	
+following first bit https://docs.godotengine.org/en/3.2/tutorials/3d/fps_tutorial/part_one.html 
+	- TODO: follow rest
 - TODO: figure out proc gen rocks
    - TODO: figure out breaking up and applying momentum to smaller rocks from larger rock destroyed
 	- TODO: or do a capital ship thing
@@ -24,7 +18,12 @@ With edits and changes to make a newtonion physics based space shooter like aste
 - TODO: figure out HUD
 
 
-
+ENVIRONMENT
+    -  make walls and ground invisible
+    -  put in a dark world environent
+	
+JUICINESS
+- cut in thrust sound when turning off drift
 - 'feel' of acceleration FX juiciness (accel and decel)
 -  figure out cockpit
     -  figure out blender enough to make a cockpit
@@ -36,9 +35,6 @@ With edits and changes to make a newtonion physics based space shooter like aste
 	
 	
 	
-Controls tutorials
-https://kidscancode.org/godot_recipes/3d/spaceship/
-	
 	
 	
 	
@@ -49,7 +45,9 @@ NAMES:
 	Close Quarters Space COmbat
 	Titan Killer
 	Thrust
-
+	
+	- low poly
+	- playful colour palette
 	- shadow of the colossus but with spaceships
 	- sense of speed
 		- lots of debris asteroids to zoom and hide behind

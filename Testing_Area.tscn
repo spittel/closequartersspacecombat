@@ -1,16 +1,15 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/nebula.png" type="Texture" id=2]
+[ext_resource path="res://assets/icosphere.glb" type="PackedScene" id=3]
 
 [sub_resource type="SphereMesh" id=25]
 radius = 28.891
 height = 59.844
 
-[sub_resource type="Skin" id=26]
-
 [sub_resource type="SpatialMaterial" id=27]
-albedo_color = Color( 1, 1, 0.376471, 1 )
+albedo_color = Color( 0.0509804, 0.988235, 0.717647, 1 )
 roughness = 0.35
 
 [sub_resource type="BoxShape" id=3]
@@ -21,14 +20,14 @@ custom_aabb = AABB( 0, 0, 0, 2, 2, 2 )
 size = Vector3( 100, 1, 100 )
 
 [sub_resource type="SpatialMaterial" id=28]
-albedo_color = Color( 0.0431373, 0.00392157, 0.00392157, 1 )
+albedo_color = Color( 0, 0.458824, 0.980392, 1 )
 roughness = 0.24
 
 [sub_resource type="CubeMesh" id=20]
 size = Vector3( 100, 20, 100 )
 
 [sub_resource type="SpatialMaterial" id=22]
-albedo_color = Color( 0.14902, 0.686275, 0.67451, 1 )
+albedo_color = Color( 0.0509804, 0.988235, 0.717647, 1 )
 metallic = 0.56
 metallic_specular = 0.28
 roughness = 0.33
@@ -37,17 +36,17 @@ roughness = 0.33
 size = Vector3( 100, 20, 100 )
 
 [sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.0392157, 0.164706, 0.701961, 1 )
+albedo_color = Color( 0.0431373, 0.780392, 0.890196, 1 )
 metallic = 0.77
 metallic_specular = 0.14
 roughness = 0.43
 
 [sub_resource type="SpatialMaterial" id=23]
-albedo_color = Color( 0.27451, 0.760784, 0.270588, 1 )
+albedo_color = Color( 0, 0.458824, 0.980392, 1 )
 roughness = 0.11
 
 [sub_resource type="SpatialMaterial" id=24]
-albedo_color = Color( 1, 0.584314, 0, 1 )
+albedo_color = Color( 0.0431373, 0.0980392, 0.890196, 1 )
 metallic = 0.48
 metallic_specular = 0.03
 roughness = 0.32
@@ -61,10 +60,10 @@ flags_unshaded = true
 
 [sub_resource type="Environment" id=7]
 background_mode = 1
-background_color = Color( 0.027451, 0.00784314, 0.184314, 1 )
-ambient_light_color = Color( 1, 0.934814, 0.90625, 1 )
-ambient_light_energy = 0.39
-ambient_light_sky_contribution = 0.6
+background_color = Color( 0.152941, 0.054902, 0.333333, 1 )
+ambient_light_color = Color( 1, 0.933333, 0.905882, 1 )
+ambient_light_energy = 0.05
+ambient_light_sky_contribution = 0.06
 fog_sun_color = Color( 0.992157, 0.992157, 0.992157, 1 )
 fog_depth_begin = 381.9
 fog_depth_end = 0.0
@@ -88,7 +87,7 @@ glow_enabled = true
 glow_levels/1 = true
 glow_levels/2 = true
 glow_levels/5 = false
-glow_intensity = 1.99
+glow_intensity = 0.13
 glow_bloom = 0.08
 glow_blend_mode = 0
 glow_bicubic_upscale = true
@@ -121,6 +120,8 @@ albedo_texture = ExtResource( 2 )
 [sub_resource type="QuadMesh" id=31]
 material = SubResource( 32 )
 
+[sub_resource type="SphereShape" id=33]
+
 [node name="Testing_Area" type="Spatial"]
 
 [node name="Box" type="Spatial" parent="."]
@@ -128,7 +129,6 @@ material = SubResource( 32 )
 [node name="Floor_Ball" type="MeshInstance" parent="Box"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0 )
 mesh = SubResource( 25 )
-skin = SubResource( 26 )
 material/0 = SubResource( 27 )
 
 [node name="StaticBody" type="StaticBody" parent="Box/Floor_Ball"]
@@ -149,7 +149,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.92921, 3.83901e-05 )
 shape = SubResource( 3 )
 
 [node name="Back Wall" type="MeshInstance" parent="Box"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, -0.641, 37.075, 162.157 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, -0.641, 37.075, 342.551 )
 cast_shadow = 2
 mesh = SubResource( 20 )
 material/0 = SubResource( 22 )
@@ -182,7 +182,7 @@ material/0 = SubResource( 23 )
 shape = SubResource( 3 )
 
 [node name="Front Wall" type="MeshInstance" parent="Box"]
-transform = Transform( -0.819152, 0.538986, 0.196175, 0, -0.34202, 0.939693, 0.573576, 0.769751, 0.280166, -0.569, 37.075, -187.598 )
+transform = Transform( -0.819152, 0.538986, 0.196175, 0, -0.34202, 0.939693, 0.573576, 0.769751, 0.280166, -272.365, 37.075, -329.515 )
 cast_shadow = 2
 generate_lightmap = false
 mesh = SubResource( 21 )
@@ -193,7 +193,7 @@ material/0 = SubResource( 24 )
 [node name="CollisionShape" type="CollisionShape" parent="Box/Front Wall/StaticBody"]
 shape = SubResource( 3 )
 
-[node name="Light Above" type="OmniLight" parent="Box"]
+[node name="Light" type="OmniLight" parent="Box"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.18, 71.1852, -82.1053 )
 light_energy = 3.007
 light_indirect_energy = 4.136
@@ -203,7 +203,7 @@ shadow_bias = 0.4
 omni_range = 308.197
 omni_attenuation = 0.757859
 
-[node name="MeshInstance" type="MeshInstance" parent="Box/Light Above"]
+[node name="MeshInstance" type="MeshInstance" parent="Box/Light"]
 cast_shadow = 0
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
@@ -230,3 +230,12 @@ draw_pass_1 = SubResource( 31 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.6032, -14.4843 )
 visible = false
 light_color = Color( 0.858824, 0.0666667, 0.0666667, 1 )
+
+[node name="icosphere" parent="." instance=ExtResource( 3 )]
+transform = Transform( 40, 0, 0, 0, 40, 0, 0, 0, 40, -18.031, -17.8963, -262.641 )
+
+[node name="StaticBody" type="StaticBody" parent="icosphere"]
+
+[node name="CollisionShape" type="CollisionShape" parent="icosphere/StaticBody"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.00986481, -0.215306 )
+shape = SubResource( 33 )
