@@ -38,10 +38,20 @@ var cam_origin = Vector3()
 
 var free_look_thrust_count = 0
 
+# contains thrusts over time, use the oldest one
+var drift_thrusts = []
+var drift_lag_count = 0;
+const DRIFT_LAG = 75
+
+
 func _ready():
 	rotation_helper = $Rotation_Helper
 	
 	var camera_to_center_offset = $Camera_Spatial.translation - $Rotation_Helper.translation
+	
+	# prime drift
+	for n in DRIFT_LAG:
+		drift_thrusts.append(Vector3())
 	
 	cam_origin  = $Rotation_Helper.translation + camera_to_center_offset
 
@@ -162,17 +172,8 @@ func handle_saggital_thrust(delta):
 			$SaggitalThrusterSound.stop()
 
 
-const DRIFT_SEC_LAG = 1
-# contains thrusts over time, use the oldest one
-var drift_thrusts = []
-
-var drift_lag = 0;
-var drift_velocity = 0;
-const DRIFT_LAG_COUNT = 5
-
 func _physics_process(delta):
 	get_input(delta)
-
 		
 	transform.basis = transform.basis.rotated(transform.basis.z, roll_input * ROLL_SPEED * delta)
 	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * PITCH_SPEED * delta)
@@ -180,21 +181,15 @@ func _physics_process(delta):
 	
 	transform.basis = transform.basis.orthonormalized()
 
-	# make it more drifty (thrust lags direction pointed)
-	
-	drift_lag += delta
-	
 	# is_free_look is when you just cut engines and can free look
 	if !is_free_look:
 		velocity = transform.basis.z * -forward_speed + transform.basis.y * vert_speed + transform.basis.x * horiz_speed
-
-		if(drift_lag > DRIFT_LAG_COUNT):
-			drift_lag = 0
-			velocity = drift_velocity
-		else:
-			drift_velocity = velocity #store for the future
+		#store current velocity for later!
+		drift_thrusts.append(velocity)
 		
-
+		# use the last one, so input is laggy
+		# make it more drifty (thrust lags direction pointed)
+		velocity = drift_thrusts.pop_front()
 		
 	
 	$HUD/Panel/Gun_label.text= "Velocity:" + str(int(forward_speed))
