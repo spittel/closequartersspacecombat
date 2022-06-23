@@ -19,7 +19,7 @@ var pitch_input = 0
 var roll_input = 0
 var yaw_input = 0
 
-var is_drift = false
+var is_free_look = false
 
 const SAGGITAL_MULTIPLIER = 50
 const FX_THRUST = .00005
@@ -36,13 +36,14 @@ var sagittal = preload("res://assets/sounds/sagittal_thrusters.mp3")
 
 var cam_origin = Vector3()
 
+var free_look_thrust_count = 0
+
 func _ready():
 	rotation_helper = $Rotation_Helper
 	
 	var camera_to_center_offset = $Camera_Spatial.translation - $Rotation_Helper.translation
 	
 	cam_origin  = $Rotation_Helper.translation + camera_to_center_offset
-
 
 func get_input(delta):
 	# capturing/freeing the cursor
@@ -67,16 +68,15 @@ func get_input(delta):
 			INPUT_RESPONSE * delta)
 
 	handle_saggital_thrust(delta)
-	
-var drift_thrust_count = 0
+
 
 func handle_thrust(delta):
-	handle_drift(delta)
+	handle_free_look(delta)
 	
 	if !Input.is_action_pressed("throttle_up") &&  !Input.is_action_pressed("throttle_down"):
 		get_to_center()
 		
-		if(drift_thrust_count <= 0):
+		if(free_look_thrust_count <= 0):
 			$MainThrusterSound.stop()
 			
 		return
@@ -110,14 +110,14 @@ func cap_max_speed(forward_speed):
 	
 	return forward_speed
 
-func handle_drift(delta):
-	is_drift = Input.is_action_pressed("drift")
+func handle_free_look(delta):
+	is_free_look = Input.is_action_pressed("free_look")
 
-	drift_thrust_count -= delta
+	free_look_thrust_count -= delta
 	
-	if Input.is_action_just_released("drift"):
+	if Input.is_action_just_released("free_look"):
 		thrust_sound()
-		drift_thrust_count = 0.5
+		free_look_thrust_count = 0.5
 
 func thrust_sound():
 	if !$MainThrusterSound.is_playing():
@@ -162,22 +162,39 @@ func handle_saggital_thrust(delta):
 			$SaggitalThrusterSound.stop()
 
 
+const DRIFT_SEC_LAG = 1
+# contains thrusts over time, use the oldest one
+var drift_thrusts = []
+
+var drift_lag = 0;
+var drift_velocity = 0;
+const DRIFT_LAG_COUNT = 5
 
 func _physics_process(delta):
 	get_input(delta)
-	
-	var previous_velocity = velocity
-	
+
+		
 	transform.basis = transform.basis.rotated(transform.basis.z, roll_input * ROLL_SPEED * delta)
 	transform.basis = transform.basis.rotated(transform.basis.x, pitch_input * PITCH_SPEED * delta)
 	transform.basis = transform.basis.rotated(transform.basis.y, yaw_input * yaw_speed * delta)
 	
 	transform.basis = transform.basis.orthonormalized()
-	
-	var tb = transform.basis
 
-	if !is_drift:
+	# make it more drifty (thrust lags direction pointed)
+	
+	drift_lag += delta
+	
+	# is_free_look is when you just cut engines and can free look
+	if !is_free_look:
 		velocity = transform.basis.z * -forward_speed + transform.basis.y * vert_speed + transform.basis.x * horiz_speed
+
+		if(drift_lag > DRIFT_LAG_COUNT):
+			drift_lag = 0
+			velocity = drift_velocity
+		else:
+			drift_velocity = velocity #store for the future
+		
+
 		
 	
 	$HUD/Panel/Gun_label.text= "Velocity:" + str(int(forward_speed))
