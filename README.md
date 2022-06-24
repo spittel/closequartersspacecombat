@@ -16,6 +16,7 @@ following first bit https://docs.godotengine.org/en/3.2/tutorials/3d/fps_tutoria
 	- TODO: or do a capital ship thing
 - TODO: zoom shake
 - TODO: figure out HUD
+- TODO: Custom sounds using Sonic PI
 
 
 ENVIRONMENT
@@ -48,9 +49,19 @@ NAMES:
 	
 	- low poly
 	- playful colour palette
+		Blues, Analogous, light to dark
+		#270E55 
+		#0B19E3
+		#0075FA
+		#0BC7E3
+		#0DFCB7
 	- shadow of the colossus but with spaceships
 	- sense of speed
 		- lots of debris asteroids to zoom and hide behind
 		- set amount of rechargeable energy to zoom, and brake
 			- zoom shake!
 			
+Things to read maybe, later
+https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language#:~:text=The%20OpenGL%20Shading%20Language%20(GLSL,is%20a%20C%2Dstyle%20language.
+
+https://www.shadertoy.com/
