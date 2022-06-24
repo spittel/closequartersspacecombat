@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/Colors.material" type="Material" id=1]
 [ext_resource path="res://assets/Emission.material" type="Material" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Player.gd" type="Script" id=9]
 [ext_resource path="res://cockpit.glb" type="PackedScene" id=10]
 [ext_resource path="res://assets/nebula.png" type="Texture" id=11]
+[ext_resource path="res://assets/MultiColorFog/MultiColorFogOverlay.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 1.2
@@ -3904,6 +3905,8 @@ speed_scale = 0.5
 randomness = 0.75
 process_material = SubResource( 31 )
 draw_pass_1 = SubResource( 32 )
+
+[node name="MultiColorFogOverlay" parent="Camera_Spatial/Camera" instance=ExtResource( 13 )]
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )
