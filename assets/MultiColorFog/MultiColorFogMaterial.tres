@@ -3,14 +3,14 @@
 [ext_resource path="res://assets/MultiColorFog/MultiColorFog.shader" type="Shader" id=1]
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.00264901, 1 )
-colors = PoolColorArray( 0.551025, 0.557308, 0.953125, 1, 0, 0.0123501, 0.180664, 1 )
+offsets = PoolRealArray( 0.00529801, 0.0860927, 1 )
+colors = PoolColorArray( 0.996078, 0.996078, 1, 0, 0.0156863, 0.00784314, 0.309804, 0.776471, 0.00784314, 0, 0.235294, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 3 )
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/fog_intensity = 0.736
-shader_param/fog_amount = 0.007
+shader_param/fog_intensity = 0.824
+shader_param/fog_amount = 0.189
 shader_param/gradient = SubResource( 2 )

@@ -53,11 +53,10 @@ roughness = 0.32
 
 [sub_resource type="Environment" id=7]
 background_mode = 1
-background_color = Color( 1, 1, 1, 1 )
 background_energy = 0.29
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.05
-ambient_light_sky_contribution = 0.01
+ambient_light_energy = 0.09
+ambient_light_sky_contribution = 0.05
 fog_sun_color = Color( 0.992157, 0.992157, 0.992157, 1 )
 fog_depth_begin = 381.9
 fog_depth_end = 0.0
@@ -120,7 +119,7 @@ material = SubResource( 32 )
 [node name="Box" type="Spatial" parent="."]
 
 [node name="Floor_Ball" type="MeshInstance" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -405.375, 0 )
 mesh = SubResource( 25 )
 material/0 = SubResource( 27 )
 
@@ -204,13 +203,13 @@ process_material = SubResource( 29 )
 draw_pass_1 = SubResource( 31 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/Spatial"]
-transform = Transform( -0.279041, 0, 0.960279, 0, 1, 0, -0.960279, 0, -0.279041, 0, 333.462, 201.794 )
-light_energy = 1.756
-light_indirect_energy = 1.389
+transform = Transform( -0.306327, 0, 0.951926, 0, 1, 0, -0.951926, 0, -0.306327, 0, 287.159, 201.794 )
+light_energy = 2.924
+light_indirect_energy = 0.571
 light_specular = 0.511
 
 [node name="icosphere" parent="." instance=ExtResource( 3 )]
-transform = Transform( 40, 0, 0, 0, 40, 0, 0, 0, 40, -18.031, -17.8963, -262.641 )
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, -18.031, -17.8963, -514.734 )
 
 [node name="StaticBody" type="StaticBody" parent="icosphere"]
 
