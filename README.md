@@ -14,9 +14,17 @@ JUICINESS
 
 GAMEPLAY
 	- TODO: capital ships
-		- TODO: blender one up
 			- TODO: figure out if you can color it procedurally?
+			- TODO: all other bosses
+			- TODO: figure out shooting 
+			- TODO: figure out moving 
+			- TODO: figure out turret animation
+			
+	- TODO: pilot ship
+		- TODO: ship view
+		
 	DONE
+		-  blender one BOSS up
 		- drift on turns (momentum)
 		- figure out proper movement
 			- have go up and float and descend (zero grav)
@@ -65,7 +73,7 @@ GRAND IDEAS
 	OVERALL:
 		- low poly
 		- playful colour palette
-			Blues, Analogous, light to dark
+			Blues, Analogous, dark to light
 			#270E55 
 			#0B19E3
 			#0075FA

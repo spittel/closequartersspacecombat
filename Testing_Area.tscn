@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/nebula.png" type="Texture" id=2]
 [ext_resource path="res://assets/icosphere.glb" type="PackedScene" id=3]
 [ext_resource path="res://Debris.gd" type="Script" id=4]
+[ext_resource path="res://assets/bosses/boss1.glb" type="PackedScene" id=5]
 
 [sub_resource type="SphereMesh" id=25]
 radius = 28.891
@@ -58,7 +59,7 @@ background_color = Color( 0.00392157, 0.0156863, 0.34902, 1 )
 background_energy = 0.29
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.28
-ambient_light_sky_contribution = 0.02
+ambient_light_sky_contribution = 0.05
 fog_sun_color = Color( 0.992157, 0.992157, 0.992157, 1 )
 fog_depth_begin = 381.9
 fog_depth_end = 0.0
@@ -226,6 +227,9 @@ shape = SubResource( 33 )
 light_energy = 7.112
 light_indirect_energy = 6.567
 omni_range = 1254.36
+
+[node name="boss1" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -295.679, 30.7211, -385.948 )
 
 [node name="Debris" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.471, -6.63156 )
