@@ -1,7 +1,4 @@
 JUICINESS
-	- CURRENT: figure out proc gen rocks for debris
-	
-	
 	- TODO: zoom shake
 	- TODO: reverse thruster sound https://freesound.org/browse/tags/thruster/?page=2#sound
 
@@ -9,6 +6,8 @@ JUICINESS
 		- cut in thrust sound when turning off drift
 		- 'feel' of acceleration FX juiciness (accel and decel)
 		- get sounds for thrusters
+		- figure out proc gen rocks for debris
+			- https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/index.html
 
 
 
@@ -83,6 +82,6 @@ GRAND IDEAS
 		
 THINGS TO READ, MAYBE, LATER
 	Shaders
-		https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language#:~:text=The%20OpenGL%20Shading%20Language%20(GLSL,is%20a%20C%2Dstyle%20language.
+https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language#:~:text=The%20OpenGL%20Shading%20Language%20(GLSL,is%20a%20C%2Dstyle%20language.
 
 		https://www.shadertoy.com/

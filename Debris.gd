@@ -32,7 +32,7 @@ func _ready():
 		
 		for i in range(mdt.get_vertex_count()):
 			var vert = mdt.get_vertex(i)
-			vert /= 10
+			vert /= 2
 
 			vert.x += random_x
 			vert.y += random_y
