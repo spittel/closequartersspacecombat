@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/nebula.png" type="Texture" id=2]
 [ext_resource path="res://assets/icosphere.glb" type="PackedScene" id=3]
+[ext_resource path="res://Debris.gd" type="Script" id=4]
 
 [sub_resource type="SphereMesh" id=25]
 radius = 28.891
@@ -53,10 +54,11 @@ roughness = 0.32
 
 [sub_resource type="Environment" id=7]
 background_mode = 1
+background_color = Color( 0.00392157, 0.0156863, 0.34902, 1 )
 background_energy = 0.29
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.09
-ambient_light_sky_contribution = 0.05
+ambient_light_energy = 0.28
+ambient_light_sky_contribution = 0.02
 fog_sun_color = Color( 0.992157, 0.992157, 0.992157, 1 )
 fog_depth_begin = 381.9
 fog_depth_end = 0.0
@@ -114,9 +116,12 @@ material = SubResource( 32 )
 
 [sub_resource type="SphereShape" id=33]
 
+[sub_resource type="ArrayMesh" id=34]
+
 [node name="Testing_Area" type="Spatial"]
 
 [node name="Box" type="Spatial" parent="."]
+visible = false
 
 [node name="Floor_Ball" type="MeshInstance" parent="Box"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -405.375, 0 )
@@ -203,16 +208,26 @@ process_material = SubResource( 29 )
 draw_pass_1 = SubResource( 31 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment/Spatial"]
-transform = Transform( -0.306327, 0, 0.951926, 0, 1, 0, -0.951926, 0, -0.306327, 0, 287.159, 201.794 )
+transform = Transform( 0.509462, 0, 0.860493, 0, 1, 0, -0.860493, 0, 0.509462, 0, 287.159, 201.794 )
 light_energy = 2.924
 light_indirect_energy = 0.571
 light_specular = 0.511
 
 [node name="icosphere" parent="." instance=ExtResource( 3 )]
-transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, -18.031, -17.8963, -514.734 )
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 427.719, -17.8963, -514.734 )
 
 [node name="StaticBody" type="StaticBody" parent="icosphere"]
 
 [node name="CollisionShape" type="CollisionShape" parent="icosphere/StaticBody"]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.00986481, -0.215306 )
 shape = SubResource( 33 )
+
+[node name="OmniLight" type="OmniLight" parent="icosphere"]
+light_energy = 7.112
+light_indirect_energy = 6.567
+omni_range = 1254.36
+
+[node name="Debris" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.471, -6.63156 )
+mesh = SubResource( 34 )
+script = ExtResource( 4 )

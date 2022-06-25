@@ -1,5 +1,7 @@
 JUICINESS
-	- TODO: figure out proc gen rocks for debris
+	- CURRENT: figure out proc gen rocks for debris
+	
+	
 	- TODO: zoom shake
 	- TODO: reverse thruster sound https://freesound.org/browse/tags/thruster/?page=2#sound
 
@@ -7,6 +9,9 @@ JUICINESS
 		- cut in thrust sound when turning off drift
 		- 'feel' of acceleration FX juiciness (accel and decel)
 		- get sounds for thrusters
+
+
+
 
 GAMEPLAY
 	- TODO: capital ships
@@ -19,8 +24,13 @@ GAMEPLAY
 			- have wasd and up and descend apply relative to view 
 			- have it freelook
 	
+	
+	
+	
 ENVIRONMENT
-	- CURRENT: get fog to go good  https://godotshaders.com/shader/gradient-color-fog/
+	- get fog to go good  https://godotshaders.com/shader/gradient-color-fog/
+		- got basic fog in, not quite working
+			-TODO adjust to look better
 		
 	DONE
 		-  make walls and ground invisible
@@ -29,6 +39,9 @@ ENVIRONMENT
 		- volumetric nebula in Blender
 		https://www.youtube.com/watch?v=kYv3ZIlb_sU
 			- cannot import shaders from Blender into Godot
+
+
+
 
 CONTINUING KNOWLEDGE 
 	https://docs.godotengine.org/en/3.2/tutorials/3d/fps_tutorial/part_one.html 
@@ -39,6 +52,9 @@ CONTINUING KNOWLEDGE
 	DONE
 		-  figure out cockpit
 			-  figure out blender enough to make a cockpit
+	
+	
+	
 	
 GRAND IDEAS
 	NAMES:
@@ -61,7 +77,10 @@ GRAND IDEAS
 			- lots of debris asteroids to zoom and hide behind
 			- set amount of rechargeable energy to zoom, and brake
 		- have to drift around objects to power up and/or wait out firing from capital ships
-			
+		
+
+
+		
 THINGS TO READ, MAYBE, LATER
 	Shaders
 		https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language#:~:text=The%20OpenGL%20Shading%20Language%20(GLSL,is%20a%20C%2Dstyle%20language.
