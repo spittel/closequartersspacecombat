@@ -43,6 +43,9 @@ var drift_thrusts = []
 var drift_lag_count = 0;
 const DRIFT_LAG = 75
 
+const THIRD_PERSON_Z= 40
+const THIRD_PERSON_Y = 10
+
 
 func _ready():
 	rotation_helper = $Rotation_Helper
@@ -64,12 +67,11 @@ func get_input(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE))
-
 	if Input.is_action_just_pressed("change_view"):
 		if(!third_person):
-			$Camera_Spatial.translate(Vector3(0, 0, 10))
+			$Camera_Spatial.translate(Vector3(0, THIRD_PERSON_Y, THIRD_PERSON_Z))
 		else:
-			$Camera_Spatial.translate(Vector3(0, 0, -10))
+			$Camera_Spatial.translate(Vector3(0, -THIRD_PERSON_Y, -THIRD_PERSON_Z))
 			
 		third_person = !third_person
 

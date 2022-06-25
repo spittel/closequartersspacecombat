@@ -3890,6 +3890,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.493176, 0 )
 shape = SubResource( 2 )
 
 [node name="Camera_Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.126801, 0.617154 )
 
 [node name="Camera" type="Camera" parent="Camera_Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, -0.065 )
@@ -3909,7 +3910,6 @@ draw_pass_1 = SubResource( 32 )
 
 [node name="MultiColorFogOverlay" parent="Camera_Spatial/Camera" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.50439 )
-visible = false
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )

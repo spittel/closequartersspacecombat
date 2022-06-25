@@ -21,9 +21,10 @@ GAMEPLAY
 			- TODO: figure out turret animation
 			
 	- TODO: pilot ship
-		- TODO: ship view
+		- CURRENT: blender up ship
 		
 	DONE
+		- 3rd person ship view
 		-  blender one BOSS up
 		- drift on turns (momentum)
 		- figure out proper movement
