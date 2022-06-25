@@ -55,6 +55,8 @@ func _ready():
 	
 	cam_origin  = $Rotation_Helper.translation + camera_to_center_offset
 
+var third_person = false
+
 func get_input(delta):
 	# capturing/freeing the cursor
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -62,6 +64,16 @@ func get_input(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode((Input.MOUSE_MODE_VISIBLE))
+
+	if Input.is_action_just_pressed("change_view"):
+		if(!third_person):
+			$Camera_Spatial.translate(Vector3(0, 0, 10))
+		else:
+			$Camera_Spatial.translate(Vector3(0, 0, -10))
+			
+		third_person = !third_person
+
+
 
 	handle_thrust(delta)
 			
