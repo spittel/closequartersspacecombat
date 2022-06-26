@@ -2,7 +2,8 @@ extends KinematicBody
 ##################################
 # new control code
 ##################################
-export var MAX_SPEED = 70
+export var MAX_SPEED = 200
+var MAX_SPEED_FX = 70
 export var ACCELERATION = 0.8
 export var PITCH_SPEED = 1.5
 export var ROLL_SPEED = 1.9
@@ -111,7 +112,7 @@ func handle_thrust(delta):
 			ACCELERATION * delta)
 		
 		# visual fx
-		if(forward_speed < MAX_SPEED):
+		if(forward_speed < MAX_SPEED_FX):
 			$Camera_Spatial.translate(Vector3(0, 0, forward_speed * FX_THRUST))
 			
 		thrust_sound()

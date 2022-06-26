@@ -56,10 +56,10 @@ roughness = 0.32
 [sub_resource type="Environment" id=7]
 background_mode = 1
 background_color = Color( 0.00392157, 0.0156863, 0.34902, 1 )
-background_energy = 0.29
+background_energy = 0.0
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.28
-ambient_light_sky_contribution = 0.08
+ambient_light_energy = 0.0
+ambient_light_sky_contribution = 0.0
 fog_sun_color = Color( 0.992157, 0.992157, 0.992157, 1 )
 fog_depth_begin = 381.9
 fog_depth_end = 0.0
@@ -123,7 +123,6 @@ material = SubResource( 32 )
 [node name="Testing_Area" type="Spatial"]
 
 [node name="Box" type="Spatial" parent="."]
-visible = false
 
 [node name="Floor_Ball" type="MeshInstance" parent="Box"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -405.375, 0 )
@@ -136,7 +135,7 @@ material/0 = SubResource( 27 )
 shape = SubResource( 3 )
 
 [node name="Celing_plane" type="MeshInstance" parent="Box"]
-transform = Transform( 1, 0, 0, 0, -20, 3.89414e-07, 0, -7.78829e-06, -1, 0, 100, 0 )
+transform = Transform( 1, 0, 0, 0, -20, 3.89414e-07, 0, -7.78829e-06, -1, 0, 207.943, 0 )
 cast_shadow = 2
 mesh = SubResource( 19 )
 material/0 = SubResource( 28 )
@@ -159,7 +158,7 @@ material/0 = SubResource( 22 )
 shape = SubResource( 3 )
 
 [node name="Right Wall" type="MeshInstance" parent="Box"]
-transform = Transform( -0.45452, -0.541675, 0.707107, 0.454519, 0.541675, 0.707107, -0.766044, 0.642788, -3.09086e-08, 241.68, 37.075, 0.085 )
+transform = Transform( -0.45452, -0.541675, 0.707107, 0.454519, 0.541675, 0.707107, -0.766044, 0.642788, -3.09086e-08, 413.288, 37.075, 162.849 )
 cast_shadow = 2
 mesh = SubResource( 21 )
 material/0 = SubResource( 2 )
@@ -170,7 +169,7 @@ material/0 = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Left Wall" type="MeshInstance" parent="Box"]
-transform = Transform( 0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, -0.707107, -3.09086e-08, -188.778, 37.075, 0.085 )
+transform = Transform( 0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, -0.707107, -3.09086e-08, -465.685, 37.075, 0.085 )
 cast_shadow = 2
 mesh = SubResource( 21 )
 material/0 = SubResource( 23 )
@@ -181,7 +180,7 @@ material/0 = SubResource( 23 )
 shape = SubResource( 3 )
 
 [node name="Front Wall" type="MeshInstance" parent="Box"]
-transform = Transform( -0.819152, 0.538986, 0.196175, 0, -0.34202, 0.939693, 0.573576, 0.769751, 0.280166, -272.365, 37.075, -329.515 )
+transform = Transform( -0.819152, 0.538986, 0.196175, 0, -0.34202, 0.939693, 0.573576, 0.769751, 0.280166, -28.4183, -163.061, -329.515 )
 cast_shadow = 2
 generate_lightmap = false
 mesh = SubResource( 21 )
