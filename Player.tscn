@@ -3916,7 +3916,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )
 
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.405, 0 )
-visible = false
 
 [node name="Armature" type="Spatial" parent="Rotation_Helper/Model"]
 
@@ -4148,23 +4147,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.307539, 20.0487 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Rotation_Helper/Gun_Aim_Point"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-visible = false
 mesh = SubResource( 23 )
 material/0 = null
-
-[node name="Flashlight" type="SpotLight" parent="Rotation_Helper"]
-transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.307539, -0.0646362 )
-visible = false
-light_color = Color( 1, 0.915375, 0.769531, 1 )
-light_energy = 0.8
-spot_range = 30.0
-spot_attenuation = 2.0
-spot_angle = 50.0
 
 [node name="Grenade_Toss_Pos" type="Spatial" parent="Rotation_Helper"]
 transform = Transform( 1, 0, 0, 0, 0.983001, 0.1836, 0, -0.1836, 0.983001, 0, -0.411827, 1.2795 )
 
-[node name="cockpit" parent="Rotation_Helper" instance=ExtResource( 10 )]
+[node name="ship" parent="Rotation_Helper" instance=ExtResource( 10 )]
 transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -0.9, -0.25 )
 
 [node name="HUD" type="Control" parent="."]
