@@ -1,4 +1,5 @@
 JUICINESS
+	-
 	- TODO: zoom shake
 	- TODO: reverse thruster sound https://freesound.org/browse/tags/thruster/?page=2#sound
 
@@ -13,6 +14,7 @@ JUICINESS
 
 
 GAMEPLAY
+	- TODO: figure out proc gen asteroids with hitboxes
 	- TODO: capital ships
 			- TODO: figure out if you can color it procedurally?
 			- TODO: all other bosses
@@ -37,7 +39,11 @@ GAMEPLAY
 ENVIRONMENT
 	- get fog to go good  https://godotshaders.com/shader/gradient-color-fog/
 		- got basic fog in, not quite working
-			-TODO adjust to look better
+			-CURRENT adjust to look better
+			https://docs.godotengine.org/en/3.0/tutorials/shading/shading_language.html
+			https://docs.godotengine.org/en/stable/tutorials/shaders/your_first_shader/your_first_3d_shader.html
+			
+			
 		
 	DONE
 		-  make walls and ground invisible

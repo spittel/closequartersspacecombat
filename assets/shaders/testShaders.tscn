@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+uniform sampler2D noise;
+uniform float heigh_scale = 0.5;
+
+void vertex(){
+	float height = texture(noise, VERTEX.xz / 2.0 + 0.5).x; // planemesh coords aore between -1, 1 (for size 2), and texture coord are 0,1. So this is to normalize them
+	VERTEX.y = height;
+	
+//	VERTEX.y += cos(VERTEX.x * 4.0) * sin(VERTEX.z * 4.0);
+}
+
+"
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+noise = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/heigh_scale = 0.5
+shader_param/noise = SubResource( 5 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = null

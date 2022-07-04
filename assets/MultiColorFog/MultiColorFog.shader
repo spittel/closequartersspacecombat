@@ -13,6 +13,7 @@ void fragment() {
 	vec4 original = texture(SCREEN_TEXTURE, SCREEN_UV);
 
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	// ndc: normalized device coordinates
 	vec3 ndc= vec3(SCREEN_UV, depth) * 2.0 - 1.0;
 	vec4 view = INV_PROJECTION_MATRIX* vec4(ndc, 1.0);
 	view.xyz /= view.w;
@@ -21,8 +22,11 @@ void fragment() {
 	float fog = depth * fog_amount;
 
 	vec4 fog_color = texture(gradient, vec2(fog, 0.0));
-	if (depth > 1.0)
-		ALBEDO =  mix(original.rgb, fog_color.rgb, fog_color.a * fog_intensity);
+	
+	float hacked_fog = depth/10f;
+	
+	if (hacked_fog < 100.0)
+		ALBEDO =  mix(original.rgb, fog_color.rgb, fog_color.a * (fog_intensity * (hacked_fog) ));
 	else
 		ALBEDO = fog_color.rgb;
 }
